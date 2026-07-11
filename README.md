@@ -26,5 +26,5 @@ The Django project lives in the `config` package.
 	- `REDIS_URL=<from Railway Redis service>`
 2. Use the web start command from `Procfile`:
 	- `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT`
-3. Run migrations on deploy:
-	- `python manage.py migrate --noinput`
+3. Railway will run the `release` command from `Procfile` to collect static files and run migrations automatically.
+4. You can copy the values from [.env.railway.example](.env.railway.example) as a starting point.
