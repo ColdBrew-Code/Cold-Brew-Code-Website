@@ -14,17 +14,3 @@ The Django project lives in the `config` package.
 1. Start the containers with `docker compose up -d`.
 2. Make sure your local `.env` has `DB_PASSWORD=postgres`.
 3. Stop the containers with `docker compose down` when you are done.
-
-## Railway deployment
-
-1. Set these environment variables in Railway:
-	- `DEBUG=False`
-	- `SECRET_KEY=<strong-random-secret>`
-	- `ALLOWED_HOSTS=<your-app-domain>`
-	- `CSRF_TRUSTED_ORIGINS=https://<your-app-domain>`
-	- `DATABASE_URL=<from Railway PostgreSQL service>`
-	- `REDIS_URL=<from Railway Redis service>`
-2. Use the web start command from `Procfile`:
-	- `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT`
-3. Railway will run the `release` command from `Procfile` to collect static files and run migrations automatically.
-4. You can copy the values from [.env.railway.example](.env.railway.example) as a starting point.
