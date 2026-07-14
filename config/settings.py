@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_icons',
     'core',
 ]
 
@@ -96,7 +97,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -167,6 +168,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if IS_PRODUCTION:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+DJANGO_ICONS = {
+    'ICONS': {
+        'portfolio': {'name': 'fa-solid fa-briefcase'},
+        'portal': {'name': 'fa-solid fa-door-open'},
+        'privacy': {'name': 'fa-solid fa-user-shield'},
+        'terms': {'name': 'fa-solid fa-file-contract'},
+        'linkedin': {'name': 'fa-brands fa-linkedin'},
+        'github': {'name': 'fa-brands fa-github'},
+        'rocket': {'name': 'fa-solid fa-rocket'},
+        'mail': {'name': 'fa-solid fa-envelope'},
+    },
+}

@@ -1,0 +1,15 @@
+{% load static %}
+{% load icons %}
+{% now "Y" as current_year %}
+<footer class="footer">
+  <img
+    src="{% static 'cb-wordmark.svg' %}"
+    alt="Cold Brew Code"
+    class="footer-brand"
+  >
+  <p class="footer-copy">&copy; {{ current_year }} Cold Brew Code LLC. All rights reserved.</p>
+  <nav class="footer-links">
+    <a href="/privacy">{% icon 'privacy' title='Privacy Policy' %} Privacy Policy</a>
+    <a href="/terms">{% icon 'terms' title='Terms of Service' %} Terms of Service</a>
+  </nav>
+</footer>

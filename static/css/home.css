@@ -1,0 +1,468 @@
+/*
+  Home page stylesheet
+  - Organized into sections: variables, accessibility helpers, base, page layout,
+    components (about + team), controls (buttons/links), utilities, media queries.
+*/
+
+/* --------------------------
+   Design tokens / variables
+   -------------------------- */
+:root {
+  --color-bg: #141a13;
+  --color-surface: #1c2419;
+  --color-surface-2: #283422;
+  --color-surface-3: #141a13;
+  --color-surface-raised: rgba(12, 23, 12, 0.4);
+  --color-accent: #8aac78;
+  --color-accent-dark: #2d3d28;
+  --color-accent-light: #adc49d;
+  --color-text: #f0ece0;
+  --color-text-muted: #a7b697;
+  --color-text-dark: #141a13;
+  --color-border: #2d3d28;
+  --chalkboard-overlay: linear-gradient(rgba(28, 36, 25, 0.93), rgba(28, 36, 25, 0.93));
+  --chalkboard-image: url('../chalkboard.webp');
+}
+
+
+/* --------------------------
+   Accessibility helpers
+   -------------------------- */
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  background: var(--color-text);
+  color: var(--color-surface-3);
+  border: 2px solid var(--color-accent);
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 700;
+  transform: translateY(-180%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: none;
+}
+
+/* Visually hidden utility (for screen-reader-only content) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* --------------------------
+   Base element styles
+   -------------------------- */
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Lato', sans-serif;
+}
+
+/* Headings use a decorative display font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Fredericka the Great', serif;
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* --------------------------
+   Page sections & backgrounds
+   -------------------------- */
+.home-page {
+  background: var(--color-bg);
+}
+
+.home-section {
+  padding: 6rem 2rem;
+  text-align: center;
+  background-image: var(--chalkboard-overlay), var(--chalkboard-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  scroll-margin-top: 5.5rem;
+}
+
+.hero {
+  scroll-margin-top: 5.5rem;
+}
+
+.home-section-team {
+  background-image: linear-gradient(rgba(20, 26, 19, 0.96), rgba(20, 26, 19, 0.96)), var(--chalkboard-image);
+}
+
+.home-section-about,
+.home-section-contact {
+  background-image: var(--chalkboard-overlay), var(--chalkboard-image);
+}
+
+.footer {
+  background-image: var(--chalkboard-overlay), var(--chalkboard-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* --------------------------
+   Section headings
+   -------------------------- */
+.section-heading {
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+}
+
+.section-heading-centered {
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.contact-heading p {
+  color: var(--color-text-muted);
+}
+
+.section-heading-divider {
+  margin: 1rem auto 0;
+}
+
+
+/* --------------------------
+   About layout (two-column)
+   -------------------------- */
+.about-layout,
+.team-grid {
+  width: 100%;
+  margin: 0;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  align-items: center;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.about-visual {
+  margin: 0;
+  position: relative;
+}
+
+.about-sticker {
+  position: absolute;
+  top: -2.5rem;
+  left: -1rem;
+  width: 150px;
+  transform: rotate(-12deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.about-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: transparent;
+  border: 3px solid #ffffff;
+  box-shadow:
+    inset 0 0 0 1px rgba(20, 26, 19, 0.22),
+    0 0 0 1px rgba(245, 243, 234, 0.08),
+    0 8px 22px rgba(0, 0, 0, 0.24);
+}
+
+.about-caption {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+  font-style: italic;
+}
+
+.about-copy {
+  display: grid;
+  gap: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--color-text-muted);
+  text-align: start;
+}
+
+
+/* --------------------------
+   Team cards / grid
+   -------------------------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  max-width: 74rem;
+  margin: 0 auto;
+}
+
+.team-card {
+  border: 1px solid var(--color-border);
+  background: linear-gradient(180deg, rgba(173, 196, 157, 0.05), rgba(0, 0, 0, 0.14)), var(--color-surface);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 2rem 1.5rem 1.75rem;
+  text-align: center;
+  border-radius: 0.35rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+.team-avatar {
+  width: 108px;
+  height: 108px;
+  margin: 0;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid var(--color-accent);
+  background: #0e150e;
+}
+
+.team-card h3 {
+  margin: 0;
+  font-size: 1.45rem;
+  color: var(--color-text);
+}
+
+.team-title {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.team-bio {
+  /* primary paragraph for team bios */
+  min-height: 6rem;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+}
+
+.team-social-links {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.team-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.team-social-link:hover,
+.team-social-link:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+  background-color: rgba(138, 172, 120, 0.12);
+  outline: none;
+}
+
+
+/* --------------------------
+   Buttons, links, and controls
+   -------------------------- */
+.team-link,
+.contact-button {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.team-link:hover,
+.team-link:focus-visible,
+.contact-button:hover {
+  background: var(--color-accent);
+  color: var(--color-text-dark);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  transform: translateY(-2px);
+}
+
+.team-link:active,
+.contact-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.contact-button {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--color-surface-3);
+  border-color: rgba(255, 255, 255, 0.96);
+}
+
+.contact-button:hover,
+.contact-button:focus-visible {
+  color: var(--color-surface-3);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.hero-cta-secondary {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--color-surface-3);
+  border-color: rgba(255, 255, 255, 0.96);
+}
+
+.hero-cta-secondary:hover {
+  background: var(--color-accent);
+  color: var(--color-text-dark);
+  border-color: var(--color-accent);
+}
+
+.hero-cta-secondary:focus-visible {
+  background: var(--color-accent);
+  color: var(--color-text-dark);
+  border-color: var(--color-accent);
+}
+
+.team-link:focus-visible,
+.contact-button:focus-visible,
+.hero-cta-secondary:focus-visible {
+  box-shadow: 0 0 0 3px rgba(173, 196, 157, 0.28), 0 10px 24px rgba(0, 0, 0, 0.24);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+
+/* --------------------------
+   Motion preferences & utilities
+   -------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .team-link,
+  .contact-button,
+  .hero-cta-secondary {
+    transition: none;
+  }
+
+  .team-link:hover,
+  .team-link:focus-visible,
+  .team-link:active,
+  .contact-button:hover,
+  .contact-button:focus-visible,
+  .contact-button:active,
+  .hero-cta-secondary:hover,
+  .hero-cta-secondary:focus-visible {
+    transform: none;
+  }
+}
+
+
+/* --------------------------
+   Responsive breakpoints
+   -------------------------- */
+@media (max-width: 960px) {
+  .about-layout,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-sticker {
+    top: -2rem;
+    left: -0.75rem;
+    width: 120px;
+  }
+
+  .team-bio {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 1280px) and (min-width: 961px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .home-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .about-sticker {
+    top: -1.5rem;
+    left: -0.5rem;
+    width: 96px;
+  }
+}

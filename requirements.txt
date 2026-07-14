@@ -1,5 +1,6 @@
 asgiref==3.11.1
 Django==6.0.7
+django-icons==26.1
 django-redis==7.0.0
 gunicorn==23.0.0
 psycopg==3.3.4

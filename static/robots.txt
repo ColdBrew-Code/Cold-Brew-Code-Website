@@ -1,0 +1,3 @@
+# robots.txt for ColdBrewCode
+User-agent: *
+Disallow:

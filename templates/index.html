@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% load icons %}
+
+{% block page_title %}Cold Brew Code{% endblock %}
+{% block page_description %}Practical software solutions, brewed fresh. Cold Brew Code helps small businesses build custom software that fits the way they work.{% endblock %}
+{% block page_og_title %}Cold Brew Code{% endblock %}
+{% block page_og_description %}Practical software solutions, brewed fresh. Cold Brew Code helps small businesses build custom software that fits the way they work.{% endblock %}
+{% block page_twitter_title %}Cold Brew Code{% endblock %}
+{% block page_twitter_description %}Practical software solutions, brewed fresh. Cold Brew Code helps small businesses build custom software that fits the way they work.{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include "layout/header.html" %}
+<main id="main-content" class="home-page">
+  <section class="hero" aria-label="Introductory section">
+    <h1 class="visually-hidden">Cold Brew Code</h1>
+    <div class="chalk-terminal-bg" aria-hidden="true">
+      <pre class="chalk-terminal-copy">{{ chalk_terminal_text }}</pre>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-title">
+        <img class="hero-wordmark" src="{% static 'cb-wordmark-curved.svg' %}" alt="" aria-hidden="true">
+      </div>
+
+      <div class="hero-divider" aria-hidden="true"></div>
+      <p class="hero-tagline">Practical software solutions, brewed fresh.</p>
+
+      <div class="hero-actions">
+        <a class="hero-cta" href="/portfolio">{% icon 'portfolio' title='Portfolio' %} View Portfolio</a>
+        <a class="hero-cta hero-cta-secondary" href="/portal">{% icon 'rocket' title='Get Started' %} Get Started</a>
+      </div>
+    </div>
+  </section>
+  <section class="home-section home-section-about" id="about">
+    <div class="section-heading">
+      <h2>About Us</h2>
+      <div class="hero-divider section-heading-divider" aria-hidden="true"></div>
+    </div>
+
+    <div class="about-layout">
+      <figure class="about-visual">
+        <img class="about-sticker" src="{% static 'chalk_pride_heart.png' %}" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="about-photo" src="{% static 'about.jpg' %}" alt="Team photo at Pridefest 2026" loading="lazy" decoding="async">
+        <figcaption class="about-caption">Mina, Scarlett, Shanna, Laura, Geoffrey, and Nyx. Pridefest 2026.</figcaption>
+      </figure>
+
+      <div class="about-copy">
+        <p>Our team has been working side by side at OTC for a couple of years - through late nights, tight deadlines, and more than a few cups of cold brew. This summer, we decided to make it official.</p>
+        <p>Cold Brew Code works with small businesses who want developers that actually invest in their vision. We're not a faceless agency - we're people who take every problem seriously and approach it with fresh eyes. We believe the best solutions come from thinking creatively, not just reaching for whatever worked last time.</p>
+        <p>If you want a team that treats your business like it matters, let's talk.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-section-team" id="team">
+    <div class="section-heading section-heading-centered">
+      <h2>Our Team</h2>
+      <div class="hero-divider section-heading-divider" aria-hidden="true"></div>
+    </div>
+
+    <div class="team-grid">
+      {% for member in team_members %}
+        <article class="team-card">
+          <img class="team-avatar" src="{{ member.image_url }}" alt="Portrait of {{ member.name }}" loading="lazy" decoding="async">
+          <h3>{{ member.name }}</h3>
+          <p class="team-title">{{ member.role|default:member.title }}</p>
+          {% if member.linkedin_url or member.github_url or member.email_link %}
+            <div class="team-social-links" aria-label="Connect with {{ member.name }}">
+              {% if member.linkedin_url %}
+                <a class="team-social-link" href="{{ member.linkedin_url }}" target="_blank" rel="noopener noreferrer">{% icon 'linkedin' title='LinkedIn' %} LinkedIn</a>
+              {% endif %}
+              {% if member.github_url %}
+                <a class="team-social-link" href="{{ member.github_url }}" target="_blank" rel="noopener noreferrer">{% icon 'github' title='GitHub' %} GitHub</a>
+              {% endif %}
+              {% if member.email_link %}
+                <a class="team-social-link" href="{{ member.email_link }}">{% icon 'mail' title='Email' %} Email</a>
+              {% endif %}
+            </div>
+          {% endif %}
+          <p class="team-bio">{{ member.bio }}</p>
+          
+          {% if member.portfolio_url %}
+            <a class="team-link" href="{{ member.portfolio_url }}" target="_blank" rel="noopener noreferrer">View Portfolio</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="home-section home-section-contact" id="contact">
+    <div class="contact-panel">
+      <div class="section-heading section-heading-centered contact-heading">
+        <h2>Ready to brew up something amazing together?</h2>
+        <div class="hero-divider section-heading-divider" aria-hidden="true"></div>
+        <p>Whether you have a project in mind or just want to chat about how we can help, we'd love to hear from you. Drop us a line and let's start the conversation!</p>
+        <a class="contact-button" href="/portal">{% icon 'rocket' title='Get Started' %} Get Started</a>
+      </div>
+    </div>
+  </section>
+</main>
+{% include "layout/footer.html" %}
+{% endblock %}

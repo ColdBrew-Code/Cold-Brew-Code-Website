@@ -1,0 +1,13 @@
+{% load static %}
+{% load icons %}
+<header role="banner" class="header">
+  <nav aria-label="Main navigation">
+    <a class="nav-brand" href="/">
+      <img src="{% static 'cb-logo.svg' %}" alt="Cold Brew Code" class="nav-logo">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/portfolio" class="nav-link">{% icon 'portfolio' title='Portfolio' %} Portfolio</a></li>
+      <li><a href="/portal" class="nav-link">{% icon 'portal' title='Customer Portal' %} Customer Portal</a></li>
+    </ul>
+  </nav>
+</header>

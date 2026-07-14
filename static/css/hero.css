@@ -1,0 +1,189 @@
+.hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 85vh;
+    padding: 6rem 2rem;
+    background-image: linear-gradient(rgba(20, 26, 19, 0.35), rgba(20, 26, 19, 0.35)), url('../chalkboard.webp');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.chalk-terminal-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', monospace;
+    color: rgba(225, 231, 206, 0.62);
+    opacity: 0.22;
+    box-sizing: border-box;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at center, rgba(4, 5, 4, 0.15) 0%, rgba(4, 5, 4, 0.4) 48%, rgba(4, 5, 4, 0.68) 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.06));
+    filter: blur(0.25px) contrast(0.9) brightness(0.9);
+    mix-blend-mode: screen;
+    mask-image: radial-gradient(
+        ellipse 78% 60% at 50% 50%,
+        transparent 0%,
+        transparent 12%,
+        rgba(0, 0, 0, 0.25) 34%,
+        rgba(0, 0, 0, 0.75) 62%,
+        black 100%
+    );
+    -webkit-mask-image: radial-gradient(
+        ellipse 78% 60% at 50% 50%,
+        transparent 0%,
+        transparent 12%,
+        rgba(0, 0, 0, 0.25) 34%,
+        rgba(0, 0, 0, 0.75) 62%,
+        black 100%
+    );
+}
+
+.chalk-terminal-copy {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 3.25rem 1.5rem 3rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-align: left;
+    font-size: 0.7rem;
+    line-height: 1.95;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.08), 0 0 18px rgba(143, 171, 108, 0.08);
+    column-width: 10rem;
+    column-count: auto;
+    column-gap: 1.35rem;
+    column-fill: balance;
+    transform: scale(1.02);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-title {
+    margin-bottom: 1.5rem;
+}
+
+.hero-wordmark {
+    display: block;
+    width: min(80vw, 42rem);
+    height: auto;
+    margin: 0;
+}
+
+.hero-wordmark-text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #f5f3ea;
+}
+
+.hero-divider {
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent);
+    margin-bottom: 1.25rem;
+}
+
+.hero-tagline {
+    font-family: 'Fredericka the Great', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1rem, 3.5vw, 2rem);
+    color: var(--color-text-muted);
+    margin-bottom: 3rem;
+    letter-spacing: 0.08em;
+}
+
+.hero-cta {
+    background-color: transparent;
+    color: var(--color-accent);
+    text-decoration: none;
+    padding: 0.85rem 2.5rem;
+    border: 2px solid var(--color-accent);
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.hero-cta:hover {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+}
+
+.hero-cta:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.hero-cta:focus-visible {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(173, 196, 157, 0.28), 0 10px 24px rgba(0, 0, 0, 0.24);
+    transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-cta {
+        transition: none;
+    }
+
+    .hero-cta:hover,
+    .hero-cta:active,
+    .hero-cta:focus-visible {
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 800px;
+        max-height: 800px;
+        padding: 4rem 1.5rem;
+        background-image: linear-gradient(rgba(20, 26, 19, 0.45), rgba(20, 26, 19, 0.45)), url('../chalkboard.webp');
+    }
+
+    .hero-wordmark {
+        width: min(86vw, 32rem);
+    }
+
+    .chalk-terminal-bg {
+        width: 100%;
+        height: 100%;
+        mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.9) 20%, transparent 36%, transparent 64%, rgba(0, 0, 0, 0.9) 80%, black 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.9) 20%, transparent 36%, transparent 64%, rgba(0, 0, 0, 0.9) 80%, black 100%);
+    }
+
+    .chalk-terminal-copy {
+        padding: 2.5rem 1rem;
+        font-size: 0.6rem;
+        column-width: auto;
+        column-count: 2;
+        column-gap: 0.9rem;
+    }
+}

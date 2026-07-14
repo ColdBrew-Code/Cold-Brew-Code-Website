@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- Basic SEO -->
+  <meta name="description" content="{% block page_description %}Practical software solutions, brewed fresh. Cold Brew Code helps small businesses build custom software that fits the way they work.{% endblock %}">
+  <meta name="author" content="Cold Brew Code">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="{% static 'favicon/favicon-96x96.png' %}" sizes="96x96">
+  <link rel="icon" href="{% static 'favicon/favicon.ico' %}" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="{% static 'favicon/favicon.svg' %}">
+  <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+
+  <!-- Social metadata -->
+  <meta property="og:site_name" content="Cold Brew Code">
+  <meta property="og:title" content="{% block page_og_title %}Cold Brew Code{% endblock %}">
+  <meta property="og:description" content="{% block page_og_description %}Practical software solutions, brewed fresh. Cold Brew Code helps small businesses build custom software that fits the way they work.{% endblock %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <meta property="og:image" content="{% block page_og_image %}{% static 'favicon/favicon-96x96.png' %}{% endblock %}">
+  <meta property="og:image:alt" content="{% block page_og_image_alt %}Cold Brew Code logo{% endblock %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block page_twitter_title %}Cold Brew Code{% endblock %}">
+  <meta name="twitter:description" content="{% block page_twitter_description %}Practical software solutions, brewed fresh. Cold Brew Code helps small businesses build custom software that fits the way they work.{% endblock %}">
+  <meta name="twitter:image" content="{% block page_twitter_image %}{% static 'favicon/favicon-96x96.png' %}{% endblock %}">
+  <meta name="twitter:image:alt" content="{% block page_twitter_image_alt %}Cold Brew Code logo{% endblock %}">
+
+  <meta name="theme-color" content="#1f140f">
+
+  <title>{% block title %}{% block page_title %}Cold Brew Code{% endblock %}{% endblock %}</title>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Icon library for django-icons output -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  {% block styles %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  {% block content %}{% endblock %}
+</body>
+</html>
