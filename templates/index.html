@@ -88,22 +88,13 @@
           <p class="team-bio">{{ member.bio }}</p>
           
           {% if member.portfolio_url %}
-            <a class="team-link" href="{{ member.portfolio_url }}" target="_blank" rel="noopener noreferrer">View Portfolio</a>
+            <a class="team-link portfolio-card-action" href="{{ member.portfolio_url }}" target="_blank" rel="noopener noreferrer">View Portfolio</a>
           {% endif %}
         </article>
       {% endfor %}
     </div>
   </section>
-  <section class="home-section home-section-contact" id="contact">
-    <div class="contact-panel">
-      <div class="section-heading section-heading-centered contact-heading">
-        <h2>Ready to brew up something amazing together?</h2>
-        <div class="hero-divider section-heading-divider" aria-hidden="true"></div>
-        <p>Whether you have a project in mind or just want to chat about how we can help, we'd love to hear from you. Drop us a line and let's start the conversation!</p>
-        <a class="contact-button" href="/portal">{% icon 'rocket' title='Get Started' %} Get Started</a>
-      </div>
-    </div>
-  </section>
+  {% include "components/contact-cta.html" %}
 </main>
 {% include "layout/footer.html" %}
 {% endblock %}

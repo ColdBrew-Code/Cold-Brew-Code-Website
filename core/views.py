@@ -64,7 +64,7 @@ $ deploy --env=production
     ✓ Live at coldbrewcode.dev"""
 
 
-def index(request):
+def build_team_members():
     team_members = [
         {
             'name': 'Shanna Graves',
@@ -145,13 +145,84 @@ def index(request):
         else:
             member['email_link'] = ''
 
-    chalk_terminal_text = "\n\n".join([TERMINAL_BACKGROUND_BLOCK] * 6)
+    return team_members
+
+
+def build_portfolio_items(team_members):
+    contributor_lookup = {
+        member['name']: member.get('portfolio_url') or member.get('github_url') or member.get('linkedin_url') or ''
+        for member in team_members
+    }
+    demo_store_image = static('projects/demo-store.webp')
+    demo_store2_image = static('projects/demo-store2.webp')
+    ecb_image = static('projects/ecb.webp')
+    portfolio_items = [
+        {
+            'title': 'Executive Coach Builders',
+            'description': 'Built as a capstone project at OTC, this site for Executive Coach Builders features a custom client portal - giving the ECB team full control over their inventory and site content without touching a line of code.',
+            'contributors': ['Shanna Graves'],
+            'url': 'https://executivecoachbuilders-production.up.railway.app/',
+            'slides': [
+                {'src': ecb_image, 'alt': 'ECB  propreview'},
+            ],
+        },
+        {
+            'title': 'Demo Store',
+            'description': 'A full-featured e-commerce concept showcasing what ColdBrew can build. It includes a modern storefront design, customizable product listings, and a dashboard for managing form submissions — ready to be tailored for any client.',
+            'contributors': ['Shanna Graves'],
+            'url': 'https://web-demo.gravessoftware.dev/',
+            'slides': [
+                {'src': demo_store_image, 'alt': 'Demo Store homepage preview'},
+                {'src': demo_store2_image, 'alt': 'Demo Store product page preview'},
+            ],
+        },
+    ]
+
+    for item in portfolio_items:
+        item['contributors'] = [
+            {
+                'name': contributor_name,
+                'url': contributor_lookup.get(contributor_name, ''),
+                'image_url': next(
+                    (
+                        member['image_url']
+                        for member in team_members
+                        if member['name'] == contributor_name
+                    ),
+                    '',
+                ),
+            }
+            for contributor_name in item['contributors']
+        ]
+
+    return portfolio_items
+
+
+def build_chalk_terminal_text():
+    return "\n\n".join([TERMINAL_BACKGROUND_BLOCK] * 6)
+
+
+def index(request):
+    team_members = build_team_members()
 
     return render(
         request,
         'index.html',
         {
             'team_members': team_members,
-            'chalk_terminal_text': chalk_terminal_text,
+            'chalk_terminal_text': build_chalk_terminal_text(),
+        },
+    )
+
+
+def portfolio(request):
+    team_members = build_team_members()
+
+    return render(
+        request,
+        'portfolio.html',
+        {
+            'chalk_terminal_text': build_chalk_terminal_text(),
+            'portfolio_items': build_portfolio_items(team_members),
         },
     )

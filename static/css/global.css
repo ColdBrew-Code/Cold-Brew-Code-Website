@@ -1,0 +1,213 @@
+/*
+  Global site styles shared across pages.
+  Keep this focused on tokens, base elements, and reusable UI primitives.
+*/
+
+:root {
+  --color-bg: #141a13;
+  --color-surface: #1c2419;
+  --color-surface-2: #283422;
+  --color-surface-3: #141a13;
+  --color-surface-raised: rgba(12, 23, 12, 0.4);
+  --color-accent: #8aac78;
+  --color-accent-dark: #2d3d28;
+  --color-accent-light: #adc49d;
+  --color-text: #f0ece0;
+  --color-text-muted: #a7b697;
+  --color-text-dark: #141a13;
+  --color-border: #2d3d28;
+  --chalkboard-overlay: linear-gradient(rgba(28, 36, 25, 0.93), rgba(28, 36, 25, 0.93));
+  --chalkboard-image: url('../chalkboard.webp');
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Lato', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Fredericka the Great', serif;
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  background: var(--color-text);
+  color: var(--color-surface-3);
+  border: 2px solid var(--color-accent);
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 700;
+  transform: translateY(-180%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-accent);
+  margin-bottom: 1.25rem;
+}
+
+.section-heading {
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+}
+
+.section-heading-centered {
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.section-heading-divider {
+  margin: 1rem auto 0;
+}
+
+.home-section {
+  padding: 6rem 2rem;
+  text-align: center;
+  background-image: var(--chalkboard-overlay), var(--chalkboard-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  scroll-margin-top: 5.5rem;
+}
+
+.footer {
+  background-image: var(--chalkboard-overlay), var(--chalkboard-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.home-section-contact {
+  background-image: var(--chalkboard-overlay), var(--chalkboard-image);
+}
+
+.contact-heading p {
+  color: var(--color-text-muted);
+}
+
+.team-link,
+.portfolio-card-action,
+.contact-button {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.team-link:hover,
+.team-link:focus-visible,
+.portfolio-card-action:hover,
+.portfolio-card-action:focus-visible,
+.contact-button:hover {
+  background: var(--color-accent);
+  color: var(--color-text-dark);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  transform: translateY(-2px);
+}
+
+.team-link:active,
+.portfolio-card-action:active,
+.contact-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.contact-button {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--color-surface-3);
+  border-color: rgba(255, 255, 255, 0.96);
+}
+
+.contact-button:hover,
+.contact-button:focus-visible {
+  color: var(--color-surface-3);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.team-link:focus-visible,
+.portfolio-card-action:focus-visible,
+.contact-button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(173, 196, 157, 0.28), 0 10px 24px rgba(0, 0, 0, 0.24);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-link,
+  .portfolio-card-action,
+  .contact-button {
+    transition: none;
+  }
+
+  .team-link:hover,
+  .team-link:focus-visible,
+  .team-link:active,
+  .portfolio-card-action:hover,
+  .portfolio-card-action:focus-visible,
+  .portfolio-card-action:active,
+  .contact-button:hover,
+  .contact-button:focus-visible,
+  .contact-button:active {
+    transform: none;
+  }
+}

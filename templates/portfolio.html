@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+{% load icons %}
+
+{% block page_title %}Portfolio | Cold Brew Code{% endblock %}
+{% block page_description %}Portfolio{% endblock %}
+{% block page_og_title %}Portfolio | Cold Brew Code{% endblock %}
+{% block page_og_description %}Portfolio{% endblock %}
+{% block page_twitter_title %}Portfolio | Cold Brew Code{% endblock %}
+{% block page_twitter_description %}Portfolio{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+  <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include "layout/header.html" %}
+<main id="main-content" class="portfolio-page">
+  <section class="hero portfolio-hero" aria-label="Portfolio introduction">
+    <h1 class="visually-hidden">Portfolio</h1>
+    <div class="chalk-terminal-bg" aria-hidden="true">
+      <pre class="chalk-terminal-copy">{{ chalk_terminal_text }}</pre>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-title">
+        <span class="hero-wordmark-text portfolio-hero-title">Portfolio</span>
+      </div>
+
+      <div class="hero-divider" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="portfolio-showcase" aria-label="Selected portfolio projects">
+    <div class="portfolio-grid">
+      {% for project in portfolio_items %}
+        <article class="portfolio-card"{% if project.slides|length > 1 %} data-carousel{% endif %}>
+          <h2 class="portfolio-card-title">{{ project.title }}</h2>
+          <div class="portfolio-divider" aria-hidden="true"></div>
+          <div class="portfolio-carousel-row">
+            {% if project.slides|length > 1 %}
+              <button class="portfolio-arrow portfolio-arrow-prev" type="button" aria-label="Previous image" data-carousel-prev>
+                <img src="{% static 'chalk_arrow.webp' %}" alt="" aria-hidden="true">
+              </button>
+
+              <div class="portfolio-card-media" role="region" aria-roledescription="carousel" aria-label="{{ project.title }} preview">
+                <div class="portfolio-slide-track" data-carousel-track>
+                  {% for slide in project.slides %}
+                    <div class="portfolio-slide{% if forloop.first %} is-active{% endif %}" data-carousel-slide aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}">
+                      <img class="portfolio-card-image" src="{{ slide.src }}" alt="{{ slide.alt }}" loading="lazy" decoding="async">
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <button class="portfolio-arrow portfolio-arrow-next" type="button" aria-label="Next image" data-carousel-next>
+                <img src="{% static 'chalk_arrow.webp' %}" alt="" aria-hidden="true">
+              </button>
+            {% else %}
+              <div class="portfolio-card-media">
+                <img class="portfolio-card-image" src="{{ project.slides.0.src }}" alt="{{ project.slides.0.alt }}" loading="lazy" decoding="async">
+              </div>
+            {% endif %}
+          </div>
+
+          {% if project.slides|length > 1 %}
+            <div class="portfolio-card-dots" aria-label="{{ project.title }} image indicators">
+              {% for slide in project.slides %}
+                <button class="portfolio-card-dot{% if forloop.first %} is-active{% endif %}" type="button" aria-label="Show slide {{ forloop.counter }} of {{ project.slides|length }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" data-carousel-dot></button>
+              {% endfor %}
+            </div>
+
+            <p class="visually-hidden" aria-live="polite" data-carousel-status>Slide 1 of {{ project.slides|length }}</p>
+          {% endif %}
+
+          <p class="portfolio-card-byline">Built By</p>
+
+          <div class="portfolio-contributors" aria-label="Contributors for {{ project.title }}">
+            {% for contributor in project.contributors %}
+              {% if contributor.url %}
+                <a class="portfolio-contributor" href="{{ contributor.url }}" target="_blank" rel="noopener noreferrer">
+                  <img class="portfolio-contributor-avatar" src="{{ contributor.image_url }}" alt="Portrait of {{ contributor.name }}" loading="lazy" decoding="async">
+                  <span class="portfolio-contributor-name">{{ contributor.name }}</span>
+                </a>
+              {% else %}
+                <span class="portfolio-contributor">
+                  <img class="portfolio-contributor-avatar" src="{{ contributor.image_url }}" alt="Portrait of {{ contributor.name }}" loading="lazy" decoding="async">
+                  <span class="portfolio-contributor-name">{{ contributor.name }}</span>
+                </span>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="portfolio-divider" aria-hidden="true"></div>
+          <p class="portfolio-card-body">{{ project.description }}</p>
+          
+
+          {% if project.url %}
+            <a class="team-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">View Demo</a>
+          {% else %}
+            <span class="team-link" aria-disabled="true">View Demo</span>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% include "components/contact-cta.html" %}
+</main>
+<script src="{% static 'js/portfolio-carousel.js' %}" defer></script>
+{% include "layout/footer.html" %}
+{% endblock %}
