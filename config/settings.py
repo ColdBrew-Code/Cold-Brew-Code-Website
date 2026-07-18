@@ -177,6 +177,7 @@ if IS_PRODUCTION:
 
 DJANGO_ICONS = {
     'ICONS': {
+        'home': {'name': 'fa-solid fa-house'},
         'portfolio': {'name': 'fa-solid fa-briefcase'},
         'portal': {'name': 'fa-solid fa-door-open'},
         'privacy': {'name': 'fa-solid fa-user-shield'},
