@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render
 from django.templatetags.static import static
 
@@ -62,6 +64,17 @@ $ deploy --env=production
     Optimizing build...
     [████████████████████] 100%
     ✓ Live at coldbrewcode.dev"""
+
+
+NOT_FOUND_TAGLINES = [
+    'The page you\'re looking for has taken a coffee break.',
+    'This page is like a coffee cup after a long day - empty.',
+    'This page is as elusive as a perfectly brewed cup of coffee...',
+    'Unfortunately, this page has gone cold.',
+    'Not all who wander are lost... but this page definitely is.',
+    'Looks like someone forgot to start the coffee maker...',
+    'Nothing but coffee grounds here...'
+]
 
 
 def build_team_members():
@@ -202,6 +215,10 @@ def build_chalk_terminal_text():
     return "\n\n".join([TERMINAL_BACKGROUND_BLOCK] * 6)
 
 
+def build_not_found_tagline():
+    return random.choice(NOT_FOUND_TAGLINES)
+
+
 def index(request):
     team_members = build_team_members()
 
@@ -225,4 +242,16 @@ def portfolio(request):
             'chalk_terminal_text': build_chalk_terminal_text(),
             'portfolio_items': build_portfolio_items(team_members),
         },
+    )
+
+
+def not_found(request, exception):
+    return render(
+        request,
+        '404.html',
+        {
+            'chalk_terminal_text': build_chalk_terminal_text(),
+            'not_found_tagline': build_not_found_tagline(),
+        },
+        status=404,
     )

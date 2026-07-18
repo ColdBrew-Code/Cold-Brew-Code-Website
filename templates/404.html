@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Not Found | Cold Brew Code{% endblock %}
+{% block page_description %}The page you requested could not be found on Cold Brew Code.{% endblock %}
+{% block page_og_title %}Not Found | Cold Brew Code{% endblock %}
+{% block page_og_description %}The page you requested could not be found on Cold Brew Code.{% endblock %}
+{% block page_twitter_title %}Not Found | Cold Brew Code{% endblock %}
+{% block page_twitter_description %}The page you requested could not be found on Cold Brew Code.{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+  <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include "layout/header.html" %}
+<main id="main-content" class="portfolio-page">
+  <section class="hero portfolio-hero" aria-label="Page not found">
+    <h1 class="visually-hidden">Page not found</h1>
+    <div class="chalk-terminal-bg" aria-hidden="true">
+      <pre class="chalk-terminal-copy">{{ chalk_terminal_text }}</pre>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-title">
+        <span class="hero-wordmark-text portfolio-hero-title">404 Not Found</span>
+      </div>
+
+      <div class="hero-divider" aria-hidden="true"></div>
+      <p class="hero-tagline">{{ not_found_tagline }}</p>
+    </div>
+  </section>
+</main>
+{% include "layout/footer.html" %}
+{% endblock %}
