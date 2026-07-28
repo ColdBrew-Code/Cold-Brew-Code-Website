@@ -67,6 +67,7 @@
 .portfolio-card-media {
   position: relative;
   aspect-ratio: 16 / 9;
+  width: 100%;
   overflow: hidden;
   border-radius: 0.45rem;
   background: #f7f6f2;
@@ -98,6 +99,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
 }
 
 .portfolio-arrow {
@@ -111,6 +113,11 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
+}
+
+.portfolio-arrow-spacer {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .portfolio-arrow img {

@@ -60,9 +60,11 @@
                 <img src="{% static 'chalk_arrow.webp' %}" alt="" aria-hidden="true">
               </button>
             {% else %}
+              <span class="portfolio-arrow portfolio-arrow-spacer" aria-hidden="true"></span>
               <div class="portfolio-card-media">
                 <img class="portfolio-card-image" src="{{ project.slides.0.src }}" alt="{{ project.slides.0.alt }}" loading="lazy" decoding="async">
               </div>
+              <span class="portfolio-arrow portfolio-arrow-spacer" aria-hidden="true"></span>
             {% endif %}
           </div>
 

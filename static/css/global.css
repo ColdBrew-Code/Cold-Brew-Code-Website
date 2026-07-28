@@ -3,6 +3,30 @@
   Keep this focused on tokens, base elements, and reusable UI primitives.
 */
 
+@font-face {
+  font-family: 'Fredericka the Great';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/fredericka-the-great-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/lato-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/lato-700.woff2') format('woff2');
+}
+
 :root {
   --color-bg: #141a13;
   --color-surface: #1c2419;
