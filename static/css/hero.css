@@ -105,6 +105,14 @@
     letter-spacing: 0.08em;
 }
 
+.hero-location {
+    margin: -1.75rem 0 2rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 243, 234, 0.78);
+}
+
 .hero-cta {
     background-color: transparent;
     color: var(--color-accent);
@@ -162,6 +170,12 @@
 
     .hero-wordmark {
         width: min(86vw, 32rem);
+    }
+
+    .hero-location {
+        margin: -1.25rem 0 1.5rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
     }
 
     .chalk-terminal-bg {

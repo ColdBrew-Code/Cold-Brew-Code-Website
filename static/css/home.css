@@ -179,6 +179,14 @@
   gap: 0.85rem;
 }
 
+.hero-location {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  text-align: center;
+}
+
 .hero-cta-secondary {
   background: rgba(255, 255, 255, 0.96);
   color: var(--color-surface-3);

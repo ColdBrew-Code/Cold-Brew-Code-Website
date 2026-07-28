@@ -186,5 +186,6 @@ DJANGO_ICONS = {
         'github': {'name': 'fa-brands fa-github'},
         'rocket': {'name': 'fa-solid fa-rocket'},
         'mail': {'name': 'fa-solid fa-envelope'},
+        'location': {'name': 'fa-solid fa-location-dot'},
     },
 }
