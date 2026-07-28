@@ -1,5 +1,8 @@
 import random
+from pathlib import Path
 
+import markdown
+from django.http import Http404
 from django.shortcuts import render
 from django.templatetags.static import static
 
@@ -217,6 +220,35 @@ def build_chalk_terminal_text():
 
 def build_not_found_tagline():
     return random.choice(NOT_FOUND_TAGLINES)
+
+
+def render_markdown_page(request, template_name, markdown_filename, page_title):
+    project_root = Path(__file__).resolve().parent.parent
+    markdown_path = project_root / markdown_filename
+
+    if not markdown_path.exists():
+        raise Http404
+
+    content = markdown_path.read_text(encoding='utf-8')
+    rendered_content = markdown.markdown(content, extensions=['fenced_code', 'tables'])
+
+    return render(
+        request,
+        template_name,
+        {
+            'page_title': page_title,
+            'rendered_content': rendered_content,
+            'chalk_terminal_text': build_chalk_terminal_text(),
+        },
+    )
+
+
+def privacy_policy(request):
+    return render_markdown_page(request, 'legal_page.html', 'PrivacyPolicy.md', 'Privacy Policy')
+
+
+def terms_of_use(request):
+    return render_markdown_page(request, 'legal_page.html', 'TermsOfUse.md', 'Terms of Use')
 
 
 def index(request):

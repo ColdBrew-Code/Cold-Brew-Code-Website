@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load icons %}
+
+{% block page_title %}{{ page_title }} | Cold Brew Code{% endblock %}
+{% block page_description %}Read the {{ page_title|lower }} for Cold Brew Code.{% endblock %}
+{% block page_og_title %}{{ page_title }} | Cold Brew Code{% endblock %}
+{% block page_og_description %}Read the {{ page_title|lower }} for Cold Brew Code.{% endblock %}
+{% block page_twitter_title %}{{ page_title }} | Cold Brew Code{% endblock %}
+{% block page_twitter_description %}Read the {{ page_title|lower }} for Cold Brew Code.{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include "layout/header.html" %}
+<main id="main-content" class="home-page">
+  <section class="hero" aria-label="Legal information">
+    <div class="hero-content" style="max-width: 860px;">
+      <div class="hero-title">
+        <img class="hero-wordmark" src="{% static 'cb-wordmark-curved.svg' %}" alt="" aria-hidden="true">
+      </div>
+      <div class="hero-divider" aria-hidden="true"></div>
+      <p class="hero-tagline">{{ page_title }}</p>
+    </div>
+  </section>
+
+  <section class="home-section" style="padding: 2rem 1.5rem 4rem;">
+    <div class="about-copy" style="max-width: 860px; margin: 0 auto;">
+      <article class="legal-content" style="line-height: 1.7;">
+        {{ rendered_content|safe }}
+      </article>
+    </div>
+  </section>
+</main>
+{% include "layout/footer.html" %}
+{% endblock %}
