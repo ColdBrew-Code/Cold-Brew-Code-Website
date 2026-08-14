@@ -215,7 +215,7 @@ def build_portfolio_items(team_members):
 
 
 def build_chalk_terminal_text():
-    return "\n\n".join([TERMINAL_BACKGROUND_BLOCK] * 6)
+    return "\n\n".join([TERMINAL_BACKGROUND_BLOCK] * 3)
 
 
 def build_not_found_tagline():
