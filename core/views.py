@@ -132,10 +132,10 @@ def build_team_members():
             'title': 'Graphic Designer',
             'bio': 'Scarlett is a prolific graphic designer with a passion for creating visually stunning and impactful designs. She is dedicated to delivering creative solutions that resonate with audiences.',
             'image_path': 'headshots/headshot_scarlett_conyers.webp',
-            'portfolio_url': '',
+            'portfolio_url': 'https://scarlettconyers.com',
             'linkedin_url': 'https://www.linkedin.com/in/scarlett-conyers/',
             'github_url': '',
-            'email': '',
+            'email': 'hopefuldream413@gmail.com',
         },
         {
             'name': 'Laura Kirkpatrick',
