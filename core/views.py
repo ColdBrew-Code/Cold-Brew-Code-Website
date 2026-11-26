@@ -116,11 +116,11 @@ def build_team_members():
             'email': '',
         },
         {
-            'name': 'Wilhelmina Vanderpool',
+            'name': 'Mina Conyers',
             'role': 'Full Stack Developer',
             'title': 'Full Stack Developer',
             'bio': 'Mina is a full stack developer specializing in UI/UX and accessible design. She builds practical web applications, databases, and tools with a strong emphasis on usability, maintainability, and user experience. Her goal is to create software that not only works well but is intuitive and enjoyable to use.',
-            'image_path': 'headshots/headshot_wilhelmina_vanderpool.webp',
+            'image_path': 'headshots/headshot_mina_conyers.webp',
             'portfolio_url': 'https://minasaur.com/',
             'linkedin_url': 'https://www.linkedin.com/in/minasaur/',
             'github_url': 'https://github.com/minasaurv',
